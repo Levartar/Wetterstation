@@ -11,11 +11,13 @@
     <Loggers>
 
         <!-- You my want to define class or package level per-logger rules -->
-        <Logger name="org.example.App" level="debug">
+        <!--
+        <Logger name="de.hdm_stuttgart.mi.sd1.weather.Forecast" level="info">
             <AppenderRef ref="A1"/>
         </Logger>
+        -->
         <Root level="info">
-            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="A1"/>
         </Root>
     </Loggers>
 </Configuration>

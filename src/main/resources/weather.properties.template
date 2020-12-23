@@ -1,0 +1,7 @@
+# copy this template to weather.properties
+
+# For obtaining an appid key see
+# https://openweathermap.org/appid
+#
+appid=add_your_value_here
+forecastURI=https://api.openweathermap.org/data/2.5/forecast
