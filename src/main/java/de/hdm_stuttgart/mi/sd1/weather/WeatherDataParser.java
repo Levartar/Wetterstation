@@ -5,6 +5,7 @@ import de.hdm_stuttgart.mi.sd1.weather.model.Weather;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Parse JSON encoded weather data.
@@ -18,5 +19,15 @@ public class WeatherDataParser {
    */
   static public final Weather parse(final String jsonWeatherDataFilename) throws IOException {
     return new ObjectMapper().readValue(new File(jsonWeatherDataFilename), Weather.class);
+  }
+
+  /**
+   * Only for testing --> remove later
+   * @param jsonWeatherDataStream
+   * @return
+   * @throws IOException
+   */
+  static public final Weather parseStream(final InputStream jsonWeatherDataStream) throws IOException {
+    return new ObjectMapper().readValue(jsonWeatherDataStream, Weather.class);
   }
 }
