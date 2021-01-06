@@ -8,19 +8,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "all"
+        "all"
 })
 public class Clouds {
 
   @JsonProperty("all")
   private int all;
+
   /**
    * No args constructor for use in serialization
+   *
    */
   public Clouds() {
   }
 
   /**
+   *
    * @param all
    */
   public Clouds(int all) {

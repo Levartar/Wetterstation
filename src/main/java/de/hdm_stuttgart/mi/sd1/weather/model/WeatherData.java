@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "id",
-  "main",
-  "description",
-  "icon"
+        "id",
+        "main",
+        "description",
+        "icon"
 })
 public class WeatherData {
 
@@ -23,16 +23,20 @@ public class WeatherData {
   private String description;
   @JsonProperty("icon")
   private String icon;
-  /**
-   * No args constructor for use in serialization
-   */
-  public WeatherData() {}
 
   /**
-   * @param id
+   * No args constructor for use in serialization
+   *
+   */
+  public WeatherData() {
+  }
+
+  /**
+   *
    * @param icon
    * @param description
    * @param main
+   * @param id
    */
   public WeatherData(int id, String main, String description, String icon) {
     super();
@@ -81,4 +85,5 @@ public class WeatherData {
   public void setIcon(String icon) {
     this.icon = icon;
   }
+
 }

@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "lat",
-  "lon"
+        "lat",
+        "lon"
 })
 public class Coord {
 
@@ -17,13 +17,16 @@ public class Coord {
   private double lat;
   @JsonProperty("lon")
   private double lon;
+
   /**
    * No args constructor for use in serialization
+   *
    */
   public Coord() {
   }
 
   /**
+   *
    * @param lon
    * @param lat
    */
@@ -52,4 +55,5 @@ public class Coord {
   public void setLon(double lon) {
     this.lon = lon;
   }
+
 }

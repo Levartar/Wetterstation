@@ -8,25 +8,29 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "speed",
-  "deg"
+        "speed",
+        "deg"
 })
 public class Wind {
 
   @JsonProperty("speed")
   private double speed;
   @JsonProperty("deg")
-  private double deg;
-  /**
-   * No args constructor for use in serialization
-   */
-  public Wind() {}
+  private int deg;
 
   /**
-   * @param speed
-   * @param deg
+   * No args constructor for use in serialization
+   *
    */
-  public Wind(double speed, double deg) {
+  public Wind() {
+  }
+
+  /**
+   *
+   * @param deg
+   * @param speed
+   */
+  public Wind(double speed, int deg) {
     super();
     this.speed = speed;
     this.deg = deg;
@@ -43,12 +47,13 @@ public class Wind {
   }
 
   @JsonProperty("deg")
-  public double getDeg() {
+  public int getDeg() {
     return deg;
   }
 
   @JsonProperty("deg")
-  public void setDeg(double deg) {
+  public void setDeg(int deg) {
     this.deg = deg;
   }
+
 }

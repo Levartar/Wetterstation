@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "pod"
+        "pod"
 })
 public class Sys {
 
@@ -17,11 +17,13 @@ public class Sys {
 
   /**
    * No args constructor for use in serialization
+   *
    */
   public Sys() {
   }
 
   /**
+   *
    * @param pod
    */
   public Sys(String pod) {
@@ -38,4 +40,5 @@ public class Sys {
   public void setPod(String pod) {
     this.pod = pod;
   }
+
 }

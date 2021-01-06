@@ -8,14 +8,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "dt",
-  "main",
-  "weather",
-  "clouds",
-  "wind",
-  "sys",
-  "dt_txt",
-  "rain"
+        "dt",
+        "main",
+        "weather",
+        "clouds",
+        "wind",
+        "visibility",
+        "pop",
+        "rain",
+        "snow",
+        "sys",
+        "dt_txt"
 })
 public class List {
 
@@ -29,38 +32,53 @@ public class List {
   private Clouds clouds;
   @JsonProperty("wind")
   private Wind wind;
+  @JsonProperty("visibility")
+  private int visibility;
+  @JsonProperty("pop")
+  private double pop;
+  @JsonProperty("rain")
+  private Rain rain;
+  @JsonProperty("snow")
+  private Snow snow;
   @JsonProperty("sys")
   private Sys sys;
   @JsonProperty("dt_txt")
   private String dtTxt;
-  @JsonProperty("rain")
-  private Rain rain;
+
   /**
    * No args constructor for use in serialization
+   *
    */
   public List() {
   }
 
   /**
-   * @param clouds Sky's state of clouds
-   * @param dt Date and time
-   * @param wind State of wind
-   * @param sys Internal API parameter
-   * @param dtTxt Localized human readable date and time
-   * @param weather List of weather forcasts
-   * @param rain State of rain
-   * @param main Global temperature, humidity etc. parameter
+   *
+   * @param dt
+   * @param weather
+   * @param main
+   * @param clouds
+   * @param wind
+   * @param visibility
+   * @param pop
+   * @param rain
+   * @param snow
+   * @param sys
+   * @param dtTxt
    */
-  public List(int dt, Main main, java.util.List<WeatherData> weather, Clouds clouds, Wind wind, Sys sys, String dtTxt, Rain rain) {
+  public List(int dt, Main main, java.util.List<WeatherData> weather, Clouds clouds, Wind wind, int visibility, double pop, Rain rain, Snow snow, Sys sys, String dtTxt) {
     super();
     this.dt = dt;
     this.main = main;
     this.weather = weather;
     this.clouds = clouds;
     this.wind = wind;
+    this.visibility = visibility;
+    this.pop = pop;
+    this.rain = rain;
+    this.snow = snow;
     this.sys = sys;
     this.dtTxt = dtTxt;
-    this.rain = rain;
   }
 
   @JsonProperty("dt")
@@ -113,6 +131,46 @@ public class List {
     this.wind = wind;
   }
 
+  @JsonProperty("visibility")
+  public int getVisibility() {
+    return visibility;
+  }
+
+  @JsonProperty("visibility")
+  public void setVisibility(int visibility) {
+    this.visibility = visibility;
+  }
+
+  @JsonProperty("pop")
+  public double getPop() {
+    return pop;
+  }
+
+  @JsonProperty("pop")
+  public void setPop(double pop) {
+    this.pop = pop;
+  }
+
+  @JsonProperty("rain")
+  public Rain getRain() {
+    return rain;
+  }
+
+  @JsonProperty("rain")
+  public void setRain(Rain rain) {
+    this.rain = rain;
+  }
+
+  @JsonProperty("snow")
+  public Snow getSnow() {
+    return snow;
+  }
+
+  @JsonProperty("snow")
+  public void setSnow(Snow snow) {
+    this.snow = snow;
+  }
+
   @JsonProperty("sys")
   public Sys getSys() {
     return sys;
@@ -133,13 +191,4 @@ public class List {
     this.dtTxt = dtTxt;
   }
 
-  @JsonProperty("rain")
-  public Rain getRain() {
-    return rain;
-  }
-
-  @JsonProperty("rain")
-  public void setRain(Rain rain) {
-    this.rain = rain;
-  }
 }

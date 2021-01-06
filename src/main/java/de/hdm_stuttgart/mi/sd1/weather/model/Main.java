@@ -8,53 +8,60 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "temp",
-  "temp_min",
-  "temp_max",
-  "pressure",
-  "sea_level",
-  "grnd_level",
-  "humidity",
-  "temp_kf"
+        "temp",
+        "feels_like",
+        "temp_min",
+        "temp_max",
+        "pressure",
+        "sea_level",
+        "grnd_level",
+        "humidity",
+        "temp_kf"
 })
 public class Main {
 
   @JsonProperty("temp")
   private double temp;
+  @JsonProperty("feels_like")
+  private double feelsLike;
   @JsonProperty("temp_min")
   private double tempMin;
   @JsonProperty("temp_max")
   private double tempMax;
   @JsonProperty("pressure")
-  private double pressure;
+  private int pressure;
   @JsonProperty("sea_level")
-  private double seaLevel;
+  private int seaLevel;
   @JsonProperty("grnd_level")
-  private double grndLevel;
+  private int grndLevel;
   @JsonProperty("humidity")
   private int humidity;
   @JsonProperty("temp_kf")
-  private int tempKf;
+  private double tempKf;
 
   /**
    * No args constructor for use in serialization
+   *
    */
   public Main() {
   }
 
   /**
+   *
+   * @param feelsLike
+   * @param tempMax
+   * @param temp
    * @param seaLevel
    * @param humidity
    * @param pressure
-   * @param grndLevel
-   * @param tempMax
-   * @param temp
    * @param tempKf
+   * @param grndLevel
    * @param tempMin
    */
-  public Main(double temp, double tempMin, double tempMax, double pressure, double seaLevel, double grndLevel, int humidity, int tempKf) {
+  public Main(double temp, double feelsLike, double tempMin, double tempMax, int pressure, int seaLevel, int grndLevel, int humidity, int tempKf) {
     super();
     this.temp = temp;
+    this.feelsLike = feelsLike;
     this.tempMin = tempMin;
     this.tempMax = tempMax;
     this.pressure = pressure;
@@ -72,6 +79,16 @@ public class Main {
   @JsonProperty("temp")
   public void setTemp(double temp) {
     this.temp = temp;
+  }
+
+  @JsonProperty("feels_like")
+  public double getFeelsLike() {
+    return feelsLike;
+  }
+
+  @JsonProperty("feels_like")
+  public void setFeelsLike(double feelsLike) {
+    this.feelsLike = feelsLike;
   }
 
   @JsonProperty("temp_min")
@@ -95,32 +112,32 @@ public class Main {
   }
 
   @JsonProperty("pressure")
-  public double getPressure() {
+  public int getPressure() {
     return pressure;
   }
 
   @JsonProperty("pressure")
-  public void setPressure(double pressure) {
+  public void setPressure(int pressure) {
     this.pressure = pressure;
   }
 
   @JsonProperty("sea_level")
-  public double getSeaLevel() {
+  public int getSeaLevel() {
     return seaLevel;
   }
 
   @JsonProperty("sea_level")
-  public void setSeaLevel(double seaLevel) {
+  public void setSeaLevel(int seaLevel) {
     this.seaLevel = seaLevel;
   }
 
   @JsonProperty("grnd_level")
-  public double getGrndLevel() {
+  public int getGrndLevel() {
     return grndLevel;
   }
 
   @JsonProperty("grnd_level")
-  public void setGrndLevel(double grndLevel) {
+  public void setGrndLevel(int grndLevel) {
     this.grndLevel = grndLevel;
   }
 
@@ -135,12 +152,13 @@ public class Main {
   }
 
   @JsonProperty("temp_kf")
-  public int getTempKf() {
+  public double getTempKf() {
     return tempKf;
   }
 
   @JsonProperty("temp_kf")
-  public void setTempKf(int tempKf) {
+  public void setTempKf(double tempKf) {
     this.tempKf = tempKf;
   }
+
 }

@@ -8,18 +8,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "cod",
-    "message",
-    "cnt",
-    "list",
-    "city"
+        "cod",
+        "message",
+        "cnt",
+        "list",
+        "city"
 })
 public class Weather {
 
     @JsonProperty("cod")
     private String cod;
     @JsonProperty("message")
-    private double message;
+    private int message;
     @JsonProperty("cnt")
     private int cnt;
     @JsonProperty("list")
@@ -29,19 +29,20 @@ public class Weather {
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
-    public Weather() {}
+    public Weather() {
+    }
 
     /**
-     * 
-     * @param message
+     *
+     * @param city
      * @param cnt
      * @param cod
+     * @param message
      * @param list
-     * @param city
      */
-    public Weather(String cod, double message, int cnt, List[] list, City city) {
+    public Weather(String cod, int message, int cnt, List[] list, City city) {
         super();
         this.cod = cod;
         this.message = message;
@@ -61,12 +62,12 @@ public class Weather {
     }
 
     @JsonProperty("message")
-    public double getMessage() {
+    public int getMessage() {
         return message;
     }
 
     @JsonProperty("message")
-    public void setMessage(double message) {
+    public void setMessage(int message) {
         this.message = message;
     }
 
@@ -99,4 +100,5 @@ public class Weather {
     public void setCity(City city) {
         this.city = city;
     }
+
 }

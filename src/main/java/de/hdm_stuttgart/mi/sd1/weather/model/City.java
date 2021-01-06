@@ -2,18 +2,22 @@
 
 package de.hdm_stuttgart.mi.sd1.weather.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "id",
-  "name",
-  "coord",
-  "country",
-  "population"
+        "id",
+        "name",
+        "coord",
+        "country",
+        "timezone",
+        "sunrise",
+        "sunset"
 })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class City {
 
   @JsonProperty("id")
@@ -24,29 +28,39 @@ public class City {
   private Coord coord;
   @JsonProperty("country")
   private String country;
-  @JsonProperty("population")
-  private int population;
+  @JsonProperty("timezone")
+  private int timezone;
+  @JsonProperty("sunrise")
+  private int sunrise;
+  @JsonProperty("sunset")
+  private int sunset;
 
   /**
    * No args constructor for use in serialization
+   *
    */
   public City() {
   }
 
   /**
-   * @param coord
-   * @param id
-   * @param name
-   * @param population
+   *
    * @param country
+   * @param coord
+   * @param sunrise
+   * @param timezone
+   * @param sunset
+   * @param name
+   * @param id
    */
-  public City(int id, String name, Coord coord, String country, int population) {
+  public City(int id, String name, Coord coord, String country, int timezone, int sunrise, int sunset) {
     super();
     this.id = id;
     this.name = name;
     this.coord = coord;
     this.country = country;
-    this.population = population;
+    this.timezone = timezone;
+    this.sunrise = sunrise;
+    this.sunset = sunset;
   }
 
   @JsonProperty("id")
@@ -89,14 +103,38 @@ public class City {
     this.country = country;
   }
 
-  @JsonProperty("population")
-  public int getPopulation() {
-    return population;
+  @JsonProperty("timezone")
+  public int getTimezone() {
+    return timezone;
   }
 
-  @JsonProperty("population")
-  public void setPopulation(int population) {
-    this.population = population;
+  @JsonProperty("timezone")
+  public void setTimezone(int timezone) {
+    this.timezone = timezone;
+  }
+
+  @JsonProperty("sunrise")
+  public int getSunrise() {
+    return sunrise;
+  }
+
+  @JsonProperty("sunrise")
+  public void setSunrise(int sunrise) {
+    this.sunrise = sunrise;
+  }
+
+  @JsonProperty("sunset")
+  public int getSunset() {
+    return sunset;
+  }
+
+  @JsonProperty("sunset")
+  public void setSunset(int sunset) {
+    this.sunset = sunset;
+  }
+
+  public String getPrettyCityName() {
+    return this.getName() + " (" + this.getCountry() + ")";
   }
 
 }
