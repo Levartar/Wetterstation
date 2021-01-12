@@ -18,6 +18,7 @@ public class Cities {
   /**
    * A list of cities / regions. {@link City#getId()} values correspond to
    * https://openweathermap.org data locations.
+   * Writes the Cities out of city.list.json into an array of City Classes
    */
   static public final City[] cities;
 

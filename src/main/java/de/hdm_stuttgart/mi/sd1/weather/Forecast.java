@@ -71,6 +71,6 @@ public class Forecast {
 
   public static City[] getSomeCities() {
     City[] cities = new Cities().cities;
-    return Arrays.copyOfRange(cities, 1, 5);
+    return Arrays.copyOfRange(cities, 0, 5);
   }
 }
