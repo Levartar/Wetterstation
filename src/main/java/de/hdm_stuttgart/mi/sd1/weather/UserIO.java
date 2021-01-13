@@ -19,6 +19,7 @@ import java.util.Scanner;
 
 public class UserIO {
 
+    private static Scanner scan=new Scanner(System.in);
     /**
      * Die Methode "readQueryString" ist für das Einlesen der Benutzereingabe zuständig.
      * @return Zurückgegeben wird ein String city, der den Stadtnamen enthält, von dem der
@@ -26,7 +27,6 @@ public class UserIO {
      */
 
     public static String readQueryString() {
-        try(final Scanner scan = new Scanner(System.in)) {
             System.out.println("Please enter a city name.");
             final String city = scan.next();
             if (city == "") {
@@ -35,7 +35,6 @@ public class UserIO {
                 System.out.println("You entered: " + city);
             }
             return city;
-        }
     }
 
     /**
@@ -49,20 +48,19 @@ public class UserIO {
      * @throws Exception Wirft einen Fehler wenn die maximale Anzahl an falschen Eingabeversuchen aufgebraucht ist.
      */
 
-    private static int retrySelection(int maxAttempts, int minOption, int maxOption) throws Exception{
+    private static int retrySelection(int maxAttempts, int minOption, int maxOption) throws Exception {
         System.out.println("Please choose one option, by typing its number. ");
         for (int count = 0; count < maxAttempts; count++) {
-            Scanner scanner = new Scanner(System.in);
             try {
-                final int value = scanner.nextInt();
+                final int value = scan.nextInt();
                 if (value >= minOption && value <= maxOption) {
                     return value;
                 } else {
                     System.out.println("Please choose a valid option");
-                    scanner.reset();
+                    scan.reset();
                 }
-            } catch (Exception e){
-                scanner.reset();
+            } catch (Exception e) {
+                scan.reset();
             }
         }
         throw new Exception("Maximum attempts exceeded");
@@ -125,5 +123,9 @@ public class UserIO {
             }
             */
         }
+    }
+
+    public static void displayException(Exception errorvalue){
+
     }
 }

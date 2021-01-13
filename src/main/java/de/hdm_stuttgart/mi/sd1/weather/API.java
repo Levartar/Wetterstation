@@ -1,8 +1,8 @@
 package de.hdm_stuttgart.mi.sd1.weather;
 
+import de.hdm_stuttgart.mi.sd1.weather.cities.City;
 import org.apache.commons.io.IOUtils;
 
-import de.hdm_stuttgart.mi.sd1.weather.model.City;
 import de.hdm_stuttgart.mi.sd1.weather.model.Weather;
 
 import java.io.File;
@@ -27,8 +27,8 @@ public class API {
     }
 
     public static String createFile(URI link) throws IOException {
-        final String pathname="../resources/CityWeatherInfo.json";
-        String weatherInfo=IOUtils.toString(link,"json");
+        final String pathname="CityWeatherInfo.json";
+        String weatherInfo=IOUtils.toString(link,"utf-8");
         File newTextFile = new File(pathname);
         FileWriter fw = new FileWriter(newTextFile);
         fw.write(weatherInfo);
