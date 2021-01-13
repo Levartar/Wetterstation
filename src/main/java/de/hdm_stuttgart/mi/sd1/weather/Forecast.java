@@ -24,9 +24,9 @@ public class Forecast {
     final API api = new API();
     final Searcher searcher = new Searcher();
 
-    final String searchstring = io.readQueryString();
+    final String searchString = io.readQueryString();
     try {
-      final Cities[] matchingCities = searcher.searchCity(searchstring);
+      final Cities[] matchingCities = searcher.searchCity(searchString);
     } catch (Exception e) {
       io.displayException(e);
     }
