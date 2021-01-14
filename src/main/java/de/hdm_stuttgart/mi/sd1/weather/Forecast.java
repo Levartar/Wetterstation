@@ -35,11 +35,11 @@ public class Forecast {
 
     final City selectedCity = io.chooseCity(matchingCities);
     Weather weather=null;
-  //  try {
+    try {
       weather = api.getCityWeatherdata(selectedCity);
-  //  } catch (Exception e) {
-  //    io.displayException(e);
-  //  }
+    } catch (Exception e) {
+      io.displayException(e);
+    }
     io.displayWeather(weather);
 
   }

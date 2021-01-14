@@ -7,6 +7,14 @@ import java.util.Arrays;
 
 public class Searcher {
 
+    /**
+     * searchCity vergleicht alle city namen aus der cities.list.json mit dem eingegebenen String.
+     * Enthält der city Name den String wird das City Objekt in ein neues City Array foundCities geschrieben.
+     * Die Länge des foundCities Array wird mit jeder weiteren gefundenen Stadt um 1 erweitert
+     * @param searchString
+     * @return
+     * @throws Exception
+     */
     public static City[] searchCity(String searchString) throws Exception {
 
         City[] cities = new Cities().cities;
