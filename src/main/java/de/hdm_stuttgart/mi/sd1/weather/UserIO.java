@@ -126,6 +126,6 @@ public class UserIO {
     }
 
     public static void displayException(Exception errorvalue){
-        System.err.println(errorvalue.getMessage());
+        System.err.println("Exception thrown: "+errorvalue.getMessage());
     }
 }

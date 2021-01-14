@@ -28,6 +28,9 @@ public class Searcher {
                 i++;
             }
         }
-        return foundCities;
+        if (i==0){
+            throw new Exception("no Cities containing "+searchString+" found!") ;
+        }else return foundCities;
+
     }
 }

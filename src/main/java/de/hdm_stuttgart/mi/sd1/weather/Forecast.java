@@ -26,21 +26,18 @@ public class Forecast {
 
     final String searchString = io.readQueryString();
 
-    City[] matchingCities=null;
     try {
-      matchingCities = searcher.searchCity(searchString);
-    } catch (Exception e) {
-      io.displayException(e);
-    }
+    final City[]  matchingCities = searcher.searchCity(searchString);
 
     final City selectedCity = io.chooseCity(matchingCities);
-    Weather weather=null;
-    try {
-      weather = api.getCityWeatherdata(selectedCity);
+
+    final Weather  weather = api.getCityWeatherdata(selectedCity);
+
+    io.displayWeather(weather);
+
     } catch (Exception e) {
       io.displayException(e);
     }
-    io.displayWeather(weather);
 
   }
 }
