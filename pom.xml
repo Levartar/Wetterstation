@@ -88,7 +88,7 @@
             <transformer
                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
               <manifestEntries>
-                <Main-Class>org.example.App</Main-Class>
+                <Main-Class>de.hdm_stuttgart.mi.sd1.weather.Forecast</Main-Class>
                 <Multi-Release>true</Multi-Release>
               </manifestEntries>
             </transformer>

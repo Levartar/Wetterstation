@@ -46,7 +46,7 @@ public class API {
      */
     public static String createFile(URI link) throws IOException {
         final String pathname="CityWeatherInfo.json";
-        String weatherInfo=IOUtils.toString(link,"utf-8");
+        String weatherInfo=IOUtils.toString(link,"UTF-8");
         File newTextFile = new File(pathname);
         FileWriter fw = new FileWriter(newTextFile);
         fw.write(weatherInfo);
