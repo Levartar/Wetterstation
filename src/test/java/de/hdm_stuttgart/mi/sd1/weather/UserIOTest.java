@@ -1,6 +1,5 @@
 package de.hdm_stuttgart.mi.sd1.weather;
 
-import org.graalvm.compiler.lir.LIRInstruction;
 import org.junit.Assert;
 import org.junit.Test;
 

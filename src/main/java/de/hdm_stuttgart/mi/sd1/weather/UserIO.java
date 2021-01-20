@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class UserIO {
 
     private static Scanner scan=new Scanner(System.in);
+
     /**
      * Die Methode "readQueryString" ist für das Einlesen der Benutzereingabe zuständig.
      * @return Zurückgegeben wird ein String city, der den Stadtnamen enthält, von dem der

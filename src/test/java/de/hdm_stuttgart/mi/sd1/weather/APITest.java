@@ -3,6 +3,9 @@ package de.hdm_stuttgart.mi.sd1.weather;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 public class APITest {
 
     @Test public void testUrl(){
@@ -10,7 +13,13 @@ public class APITest {
                 API.createUrl(707860));
     }
 
-    @Test public void testcreateFile(){
+    @Test public void testcreateFile() {
+        try {
+            URI link = new URI(API.createUrl(707860));
+            Assert.assertEquals("CityWeatherInfo.json", API.createFile(link));
+        } catch (Exception e){
+            System.out.println("Error");
+        }
 
     }
 }
