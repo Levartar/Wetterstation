@@ -6,6 +6,7 @@ import de.hdm_stuttgart.mi.sd1.weather.model.Weather;
 import de.hdm_stuttgart.mi.sd1.weather.model.WeatherData;
 
 
+import java.io.PrintStream;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,23 +20,47 @@ import java.util.Scanner;
 
 public class UserIO {
 
-    private static Scanner scan=new Scanner(System.in);
+    private static Scanner scan;
+    private static PrintStream printOutput;
+    private static PrintStream printErrorOutput;
+
+    public static void setPrintErrorOutput(PrintStream printErrorOutput) {
+        UserIO.printErrorOutput = printErrorOutput;
+    }
+
+    public void setScanner(Scanner scanner){
+        UserIO.scan = scanner;
+    }
+
+    public void setPrintOutput(PrintStream printStream){
+        UserIO.printOutput = printStream;
+    }
 
     /**
-     * Die Methode "readQueryString" ist für das Einlesen der Benutzereingabe zuständig.
-     * @return Zurückgegeben wird ein String city, der den Stadtnamen enthält, von dem der
-     * Nutzer gerne die Wetterdaten hätte.
+     * Die Methode "welcome Message" ist für die Ausgabe einer Willkomensnachricht sowie der Aufforderung der Eingabe
+     * eines Stadtnamens zuständig.
      */
 
-    public static String readQueryString() {
-            System.out.println("Please enter a city name.");
-            final String city = scan.next();
+    public static void welcomeMessage(){
+        printOutput.println("Welcome to our weather app");
+        printOutput.println("Please enter a city name.");
+    }
+
+    /**
+     *  Die Methode "readQueryString" ist für das Einlesen der Benutzereingabe zuständig.
+     * @return Zurückgegeben wird ein String city, der den Stadtnamen enthält, von dem der Nutzer gerne die Wetterdaten hätte.
+     * @throws Exception Wirft einen Fehler falls der Benutzer nichts eingegeben hat.
+     */
+
+    public static String readQueryString() throws Exception {
+            final String city = scan.nextLine();
             if (city == "") {
-                System.out.println("You haven't entered anything. Please enter a city name");
+                printOutput.println("You haven't entered anything. Please enter a city name");
+                throw new Exception("User didn't enter anything");
             } else {
-                System.out.println("You entered: " + city);
+                printOutput.println("You entered: " + city);
+                return city;
             }
-            return city;
     }
 
     /**
@@ -49,15 +74,15 @@ public class UserIO {
      * @throws Exception Wirft einen Fehler wenn die maximale Anzahl an falschen Eingabeversuchen aufgebraucht ist.
      */
 
-    private static int retrySelection(int maxAttempts, int minOption, int maxOption) throws Exception {
-        System.out.println("Please choose one option, by typing its number. ");
+    public static int retrySelection(int maxAttempts, int minOption, int maxOption) throws Exception {
+        printOutput.println("Please choose one option, by typing its number.");
         for (int count = 0; count < maxAttempts; count++) {
             try {
                 final int value = scan.nextInt();
                 if (value >= minOption && value <= maxOption) {
                     return value;
                 } else {
-                    System.out.println("Please choose a valid option");
+                    printOutput.println("Please choose a valid option");
                     scan.reset();
                 }
             } catch (Exception e) {
@@ -80,7 +105,7 @@ public class UserIO {
         if (cities.length > 1) {
             int i = 1;
             for (City city : cities) {
-                System.out.println(i + " = " + city.getName());
+                printOutput.println(i + " = " + city.getName());
                 i++;
             }
             try {
@@ -99,34 +124,38 @@ public class UserIO {
     /**
      * Die Methode "displayWeather" erzeugt die Augabe der einzelnen Wetterdaten zu der gewählten Stadt.
      * @param weather Dieser Parameter übergibt die Wetterdaten der gewählten Stadt.
+     * @throws Exception Wirft einen Fehler falls das Wetterobjekt keine Daten enthält.
      */
 
-    public static void displayWeather(Weather weather) {
+    public static void displayWeather(Weather weather) throws Exception {
 
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("eeee, dd.MM.");
         final DateTimeFormatter timeOutputFormatter = DateTimeFormatter.ofPattern("HH:mm");
         DayOfWeek previousDay = null;
 
-        for (List list : weather.getList()) {
-            final java.util.List<WeatherData> weatherDataList = list.getWeather();
-            final LocalDateTime date = LocalDateTime.parse(list.getDtTxt(), formatter);
-            if (date.getDayOfWeek() != previousDay) {
-                System.out.println("");
-                System.out.println(date.format(outputFormatter));
+        if (weather.getList() != null) {
+            for (List list : weather.getList()) {
+                final java.util.List<WeatherData> weatherDataList = list.getWeather();
+                final LocalDateTime date = LocalDateTime.parse(list.getDtTxt(), formatter);
+                if (date.getDayOfWeek() != previousDay) {
+                    printOutput.println("");
+                    printOutput.println(date.format(outputFormatter));
+                }
+                printOutput.println(date.format(timeOutputFormatter) + ": " + (int) list.getMain().getTemp() + "°C, " + weatherDataList.get(0).getDescription());
+                previousDay = date.getDayOfWeek();
             }
-            System.out.println(date.format(timeOutputFormatter) + ": " + (int) list.getMain().getTemp() + "°C, " + weatherDataList.get(0).getDescription());
-            previousDay = date.getDayOfWeek();
-
-            /*
-            for(WeatherData weatherData : weatherDataList) {
-                System.out.println(weatherData.getDescription());
-            }
-            */
+        } else {
+            throw new Exception("Das Weather Objekt enthält keine Daten");
         }
     }
 
-    public static void displayException(Exception errorvalue){
-        System.err.println("Exception thrown: "+errorvalue.getMessage());
+    /**
+     * Die Methode "displayException" gibt Fehlermeldungen aus.
+     * @param errorValue ist der Parameter der Exception.
+     */
+
+    public static void displayException(Exception errorValue){
+        printErrorOutput.println("Exception thrown: "+errorValue.getMessage());
     }
 }

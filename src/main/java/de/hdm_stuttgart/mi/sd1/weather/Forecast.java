@@ -1,12 +1,10 @@
 package de.hdm_stuttgart.mi.sd1.weather;
 
 
-import de.hdm_stuttgart.mi.sd1.weather.cities.Cities;
 import de.hdm_stuttgart.mi.sd1.weather.cities.City;
 import de.hdm_stuttgart.mi.sd1.weather.model.Weather;
 
-import java.io.InputStream;
-import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Providing terminal based weather forecast
@@ -21,19 +19,24 @@ public class Forecast {
   public static void main(String[] args) throws Exception {
 
     final UserIO io = new UserIO();
+
+    io.setScanner(new Scanner(System.in));
+    io.setPrintOutput(System.out);
+    io.setPrintErrorOutput(System.err);
+
     final API api = new API();
     final Searcher searcher = new Searcher();
-
-    final String searchString = io.readQueryString();
+    io.welcomeMessage();
 
     try {
-    final City[]  matchingCities = searcher.searchCity(searchString);
+      final String searchString = io.readQueryString();
+      final City[]  matchingCities = searcher.searchCity(searchString);
 
-    final City selectedCity = io.chooseCity(matchingCities);
+      final City selectedCity = io.chooseCity(matchingCities);
 
-    final Weather  weather = api.getCityWeatherdata(selectedCity);
+      final Weather  weather = api.getCityWeatherdata(selectedCity);
 
-    io.displayWeather(weather);
+      io.displayWeather(weather);
 
     } catch (Exception e) {
       io.displayException(e);
@@ -41,40 +44,3 @@ public class Forecast {
 
   }
 }
-
-    /*
-    // Tests für die Methoden, die ich in UserIO geschrieben habe.
-    System.out.println(getSomeCities().toString());
-    final UserIO userIO = new UserIO();
-    try {
-      userIO.chooseCity(getSomeCities());
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-
-    try {
-      userIO.displayWeather(WeatherData());
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-  }
-    */
-/*
-  public static Weather WeatherData() {
-    final WeatherDataParser weatherDataParser = new WeatherDataParser();
-    try {
-      final InputStream fileStream = Forecast.class.getClassLoader().getResourceAsStream("stuttgart.weather.json");
-      final Weather weather = weatherDataParser.parseStream(fileStream);
-      return weather;
-    } catch (Exception e){
-      Common.exitOnError(e.getMessage());
-    }
-    return null;
-  }
-
-
-  public static City[] getSomeCities() {
-    City[] cities = new Cities().cities;
-    return Arrays.copyOfRange(cities, 0, 5);
-  }
-}*/
