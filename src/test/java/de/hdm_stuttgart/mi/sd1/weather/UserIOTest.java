@@ -3,7 +3,6 @@ package de.hdm_stuttgart.mi.sd1.weather;
 import de.hdm_stuttgart.mi.sd1.weather.cities.Cities;
 import de.hdm_stuttgart.mi.sd1.weather.cities.City;
 import de.hdm_stuttgart.mi.sd1.weather.model.Weather;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -11,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
@@ -30,7 +30,7 @@ public class UserIOTest {
         PrintStream printOutput = new PrintStream(output);
         io.setPrintOutput(printOutput);
         io.welcomeMessage();
-        Assert.assertEquals("Welcome to our weather app\nPlease enter a city name.\n", output.toString());
+        assertEquals("Welcome to our weather app\nPlease enter a city name.\n", output.toString());
     }
 
     /**
@@ -52,10 +52,10 @@ public class UserIOTest {
         io.setPrintOutput(printStream);
         try {
             String city = io.readQueryString();
-            Assert.assertEquals("Stuttgart", city);
-            Assert.assertEquals("You entered: Stuttgart\n", outputStream.toString());
+            assertEquals("Stuttgart", city);
+            assertEquals("You entered: Stuttgart\n", outputStream.toString());
         } catch (Exception e) {
-
+            // Ignore
         }
     }
 
@@ -79,10 +79,10 @@ public class UserIOTest {
 
         try {
             String city = io.readQueryString();
-            Assert.assertEquals("", city);
-            Assert.assertEquals("You haven't entered anything. Please enter a city name\n", outputStream.toString());
+            assertEquals("", city);
+            assertEquals("You haven't entered anything. Please enter a city name\n", outputStream.toString());
         } catch (Exception e){
-
+            // Ignore
         }
     }
 
@@ -106,8 +106,8 @@ public class UserIOTest {
 
         try {
             int value = io.retrySelection(5, 1, 5);
-            Assert.assertEquals("Please choose one option, by typing its number.\n", outputStream.toString());
-            Assert.assertEquals(1, value);
+            assertEquals("Please choose one option, by typing its number.\n", outputStream.toString());
+            assertEquals(1, value);
         } catch (Exception e) {
             // Ignore
         }
@@ -136,8 +136,8 @@ public class UserIOTest {
 
         try {
            int value = io.retrySelection(5, 1, 5);
-            Assert.assertEquals("Please choose one option, by typing its number.\nPlease choose a valid option\n", outputStream.toString());
-            Assert.assertEquals(3, value);
+            assertEquals("Please choose one option, by typing its number.\nPlease choose a valid option\n", outputStream.toString());
+            assertEquals(3, value);
         } catch (Exception e) {
             // Ignore
         }
@@ -163,7 +163,7 @@ public class UserIOTest {
 
         try {
             io.retrySelection(5, 1, 5);
-            Assert.assertEquals("Please choose one option, by typing its number.\n" +
+            assertEquals("Please choose one option, by typing its number.\n" +
                             "Please choose a valid option\n" +
                             "Please choose a valid option\n" +
                             "Please choose a valid option\n" +
@@ -172,7 +172,7 @@ public class UserIOTest {
                     outputStream.toString());
             fail("Should throw exception when maximum attempts exceeded");
         } catch (Exception e) {
-            Assert.assertEquals("Maximum attempts exceeded", e.getMessage());
+            assertEquals("Maximum attempts exceeded", e.getMessage());
         }
     }
 
@@ -188,7 +188,7 @@ public class UserIOTest {
         try {
             io.chooseCity(emptyArray);
         } catch (Exception e) {
-            Assert.assertEquals("Cities must be an array of city objects.", e.getMessage());
+            assertEquals("Cities must be an array of city objects.", e.getMessage());
         }
     }
 
@@ -205,7 +205,7 @@ public class UserIOTest {
         try {
             io.chooseCity(emptyCityObject);
         } catch (Exception e) {
-            Assert.assertEquals("Cities must be an array of city objects.", e.getMessage());
+            assertEquals("Cities must be an array of city objects.", e.getMessage());
         }
     }
 
@@ -222,7 +222,7 @@ public class UserIOTest {
         City[] testCity = new City[1];
         testCity[0] = cities[0];
         try {
-            Assert.assertEquals(testCity[0], io.chooseCity(testCity));
+            assertEquals(testCity[0], io.chooseCity(testCity));
         } catch (Exception e) {
             // Ignore
         }
@@ -258,8 +258,8 @@ public class UserIOTest {
         City result = cities[1];
         try {
             City selectedCity = io.chooseCity(multipleOptions);
-            Assert.assertEquals(result, selectedCity);
-            Assert.assertEquals(expectedOptionOutput, outputStream.toString());
+            assertEquals(result, selectedCity);
+            assertEquals(expectedOptionOutput, outputStream.toString());
         } catch (Exception e) {
             // Ignore
         }
@@ -334,7 +334,7 @@ public class UserIOTest {
         try {
             final Weather weatherStuttgart = WeatherDataParser.parse("src/main/resources/stuttgart.weather.json");
             io.displayWeather(weatherStuttgart);
-            Assert.assertEquals(exprectedWeatherOutput, outputStream.toString());
+            assertEquals(exprectedWeatherOutput, outputStream.toString());
         } catch (Exception e) {
             // Ignore
         }
@@ -358,7 +358,7 @@ public class UserIOTest {
             io.displayWeather(emptyWeather);
             fail("Die Methode sollte einen Fehler werfen wenn ein leeres Wetter Objekt übergeben wird");
         } catch (Exception e) {
-            Assert.assertEquals("Das Weather Objekt enthält keine Daten", e.getMessage());
+            assertEquals("Das Weather Objekt enthält keine Daten", e.getMessage());
         }
     }
 
@@ -377,6 +377,6 @@ public class UserIOTest {
         Exception exception = new Exception("TestMessage");
         io.displayException(exception);
 
-        Assert.assertEquals("Exception thrown: TestMessage\n", outputStream.toString());
+        assertEquals("Exception thrown: TestMessage\n", outputStream.toString());
     }
 }

@@ -1,14 +1,12 @@
 package de.hdm_stuttgart.mi.sd1.weather;
 
 import de.hdm_stuttgart.mi.sd1.weather.cities.City;
-import org.apache.commons.io.IOUtils;
-
 import de.hdm_stuttgart.mi.sd1.weather.model.Weather;
+import org.apache.commons.io.IOUtils;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -24,7 +22,7 @@ public class API {
      * @throws IOException
      */
     public static Weather getCityWeatherdata(City selectedCity) throws URISyntaxException, IOException {
-        URI link =new URI(createUrl(selectedCity.getId()));
+        URI link = new URI(createUrl(selectedCity.getId()));
         return WeatherDataParser.parse(createFile(link));
     }
 
@@ -45,7 +43,7 @@ public class API {
      * @throws IOException
      */
     public static String createFile(URI link) throws IOException {
-        final String pathname="CityWeatherInfo.json";
+        final String pathname = "CityWeatherInfo.json";
         String weatherInfo=IOUtils.toString(link,"UTF-8");
         File newTextFile = new File(pathname);
         FileWriter fw = new FileWriter(newTextFile);

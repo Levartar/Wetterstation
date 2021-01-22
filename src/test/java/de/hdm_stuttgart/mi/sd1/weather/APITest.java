@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 public class APITest {
 
@@ -13,7 +12,7 @@ public class APITest {
                 API.createUrl(707860));
     }
 
-    @Test public void testcreateFile() {
+    @Test public void testCreateFile() {
         try {
             URI link = new URI(API.createUrl(707860));
             Assert.assertEquals("CityWeatherInfo.json", API.createFile(link));
