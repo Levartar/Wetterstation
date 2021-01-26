@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 
 public class API {
 
@@ -18,10 +19,10 @@ public class API {
     /**
      * getCityWeatherdata bekommt ein City Objekt und gibt die Wetterdaten aus der https://openweathermap.org/api zurück
      * dafür wird erst der Individuelle City Link erstellt, mit dem dann die Individelle Api abfrage gestartet wird.
-     * @param selectedCity
-     * @return
-     * @throws URISyntaxException
-     * @throws IOException
+     * @param selectedCity ausgewählte Stadt
+     * @return Wetter Objekt
+     * @throws URISyntaxException wirft Exception wenn URI Fehler
+     * @throws IOException wirft Exception wenn Connection Fehler
      */
     public static Weather getCityWeatherdata(City selectedCity) throws Exception {
         URI link = new URI(createUrl(selectedCity.getId()));
@@ -31,25 +32,25 @@ public class API {
     /**
      * Estellen des Links mit Konstanter Url + Konstanter APPID und variabler id.
      * @param id bekommt die Individuelle City Id
-     * @return
+     * @return Url String
      */
     public static String createUrl(int id){
         logger.info("Creating api url for id: " + id);
-        String baseUrl="https://api.openweathermap.org/data/2.5/forecast?lang=de&APPID=1243fb71d2704f4b3e92b4f04f5075cd&units=metric&id="+id;
-        return baseUrl;
+        return "https://api.openweathermap.org/data/2.5/forecast?lang=de&APPID=1243fb71d2704f4b3e92b4f04f5075cd&units=metric&id="+id;
+
     }
 
     /**
      * createFile schreibt die Wetterdaten aus der Api Abfrage in eine .json Datei
-     * @param link
-     * @return
-     * @throws IOException
+     * @param link Url String
+     * @return Pathname = Url String
+     * @throws IOException wirft Exception wenn Connection Fehler
      */
     public static String createFile(URI link) throws Exception {
         logger.info("Getting weatherdata from openweatherapi");
         final String pathname = "CityWeatherInfo.json";
         try {
-            String weatherInfo = IOUtils.toString(link, "UTF-8");
+            String weatherInfo = IOUtils.toString(link, StandardCharsets.UTF_8);
         File newTextFile = new File(pathname);
         logger.info("Writing weatherdata to file: " + pathname);
         FileWriter fw = new FileWriter(newTextFile);

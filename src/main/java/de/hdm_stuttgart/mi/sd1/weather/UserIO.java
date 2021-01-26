@@ -53,14 +53,17 @@ public class UserIO {
      */
 
     public static String readQueryString() throws Exception {
-            final String city = scan.nextLine();
-            if (city == "") {
-                printOutput.println("You haven't entered anything. Please enter a city name");
-                throw new Exception("User didn't enter anything");
-            } else {
-                printOutput.println("You entered: " + city);
-                return city;
+            for (int i=0;i<5;i++){
+                final String city = scan.nextLine();
+                if (city.equals("")) {
+                    printOutput.println("You haven't entered anything. Please enter a city name");
+
+                } else {
+                    printOutput.println("You entered: " + city);
+                    return city;
+                }
             }
+        throw new Exception("User didn't enter anything");
     }
 
     /**
@@ -105,7 +108,7 @@ public class UserIO {
         if (cities.length > 1) {
             int i = 1;
             for (City city : cities) {
-                printOutput.println(i + " = " + city.getName());
+                printOutput.println(i + " = " + city.getName() + ", "+city.getCountry());
                 i++;
             }
             try {
@@ -139,9 +142,9 @@ public class UserIO {
                 final java.util.List<WeatherData> weatherDataList = list.getWeather();
                 final LocalDateTime date = LocalDateTime.parse(list.getDtTxt(), formatter);
                 if (date.getDayOfWeek() != previousDay) {
-                    printOutput.println("");
-                    printOutput.println(date.format(outputFormatter));
+                    printOutput.println("\n"+date.format(outputFormatter));
                 }
+
                 printOutput.println(date.format(timeOutputFormatter) + ": " + (int) list.getMain().getTemp() + "°C, " + weatherDataList.get(0).getDescription());
                 previousDay = date.getDayOfWeek();
             }
