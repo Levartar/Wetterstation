@@ -23,7 +23,7 @@ public class API {
      * @throws URISyntaxException
      * @throws IOException
      */
-    public static Weather getCityWeatherdata(City selectedCity) throws URISyntaxException, IOException {
+    public static Weather getCityWeatherdata(City selectedCity) throws Exception {
         URI link = new URI(createUrl(selectedCity.getId()));
         return WeatherDataParser.parse(createFile(link));
     }
@@ -45,16 +45,23 @@ public class API {
      * @return
      * @throws IOException
      */
-    public static String createFile(URI link) throws IOException {
+    public static String createFile(URI link) throws Exception {
         logger.info("Getting weatherdata from openweatherapi");
         final String pathname = "CityWeatherInfo.json";
-        String weatherInfo=IOUtils.toString(link,"UTF-8");
+        try {
+            String weatherInfo = IOUtils.toString(link, "UTF-8");
         File newTextFile = new File(pathname);
         logger.info("Writing weatherdata to file: " + pathname);
         FileWriter fw = new FileWriter(newTextFile);
         fw.write(weatherInfo);
         fw.close();
         return pathname;
+
+        }catch (Exception e){
+            Exception noConnection = new Exception("no connection to server please check your Internet connection");
+            logger.error("Connection to API server failed", noConnection);
+            throw noConnection;
+        }
     }
 
 }
