@@ -2,10 +2,13 @@ package de.hdm_stuttgart.mi.sd1.weather;
 
 import de.hdm_stuttgart.mi.sd1.weather.cities.Cities;
 import de.hdm_stuttgart.mi.sd1.weather.cities.City;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
 public class Searcher {
+    private static final Logger logger = LogManager.getLogger(Searcher.class);
 
     /**
      * searchCity vergleicht alle city namen aus der cities.list.json mit dem eingegebenen String.
@@ -20,7 +23,7 @@ public class Searcher {
         City[] cities = new Cities().cities;
         City[] foundCities = new City[0];
         int i=0;
-
+        logger.info("Search city list for hits");
         for (City city : cities) {
             if (city.getName().toLowerCase().contains(searchString.toLowerCase())) {
                 foundCities=Arrays.copyOf(foundCities, foundCities.length+1);
@@ -29,8 +32,12 @@ public class Searcher {
             }
         }
         if (i==0){
-            throw new Exception("no Cities containing "+searchString+" found!") ;
-        }else return foundCities;
+            Exception notFound = new Exception("No cities containing " + searchString + " found!");
+            logger.error("No matching cities", notFound);
+            throw notFound;
+        } else {
+            return foundCities;
+        }
 
     }
 }
