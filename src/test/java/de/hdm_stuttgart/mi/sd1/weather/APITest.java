@@ -34,7 +34,7 @@ public class APITest {
      * Internetverbindung simuliert wird.
      * @throws URISyntaxException
      */
-    @Test public void testnoConnection() throws URISyntaxException {
+    @Test public void testNoConnection() throws URISyntaxException {
         try{
             URI link = new URI("https://api.openweathermap.org/data/2.5/forecast?lang=de&APPID=&units=metric&id=707860");
             API.createFile(link);

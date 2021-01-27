@@ -4,6 +4,8 @@ import de.hdm_stuttgart.mi.sd1.weather.cities.City;
 import de.hdm_stuttgart.mi.sd1.weather.model.List;
 import de.hdm_stuttgart.mi.sd1.weather.model.Weather;
 import de.hdm_stuttgart.mi.sd1.weather.model.WeatherData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import java.io.PrintStream;
@@ -20,6 +22,7 @@ import java.util.Scanner;
 
 public class UserIO {
 
+    private static final Logger logger = LogManager.getLogger(UserIO.class);
     private static Scanner scan;
     private static PrintStream printOutput;
     private static PrintStream printErrorOutput;
@@ -42,6 +45,7 @@ public class UserIO {
      */
 
     public static void welcomeMessage(){
+        logger.info("Output of a welcome message as well as a prompt to the user to enter a city from which the weather data is requested");
         printOutput.println("Welcome to our weather app");
         printOutput.println("Please enter a city name.");
     }
@@ -56,13 +60,16 @@ public class UserIO {
             for (int i=0;i<5;i++){
                 final String city = scan.nextLine();
                 if (city.equals("")) {
+                    logger.warn("The user has not entered anything");
                     printOutput.println("You haven't entered anything. Please enter a city name");
 
                 } else {
+                    logger.info("The user has entered: " + city);
                     printOutput.println("You entered: " + city);
                     return city;
                 }
             }
+        logger.error("User didn't enter anything");
         throw new Exception("User didn't enter anything");
     }
 
@@ -78,6 +85,7 @@ public class UserIO {
      */
 
     public static int retrySelection(int maxAttempts, int minOption, int maxOption) throws Exception {
+        logger.info("There were several matches to the city list. A selection is now available.");
         printOutput.println("Please choose one option, by typing its number.");
         for (int count = 0; count < maxAttempts; count++) {
             try {
@@ -85,6 +93,7 @@ public class UserIO {
                 if (value >= minOption && value <= maxOption) {
                     return value;
                 } else {
+                    logger.warn("The user has made an invalid entry.");
                     printOutput.println("Please choose a valid option");
                     scan.reset();
                 }
@@ -92,6 +101,7 @@ public class UserIO {
                 scan.reset();
             }
         }
+        logger.error("Maximum attempts exceeded");
         throw new Exception("Maximum attempts exceeded");
     }
 
@@ -120,6 +130,7 @@ public class UserIO {
         } else if (cities.length == 1) {
             return cities[0];
         } else {
+            logger.error("There were no city objects to choose from");
             throw new Exception("Cities must be an array of city objects.");
         }
     }
@@ -149,7 +160,8 @@ public class UserIO {
                 previousDay = date.getDayOfWeek();
             }
         } else {
-            throw new Exception("Das Weather Objekt enthält keine Daten");
+            logger.error("The weather object does not contain any data");
+            throw new Exception("The weather object does not contain any data");
         }
     }
 
