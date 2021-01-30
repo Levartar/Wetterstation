@@ -27,8 +27,8 @@ public class Wind {
 
   /**
    *
-   * @param deg
-   * @param speed
+   * @param deg Windrichtung
+   * @param speed Windgeschwindigkeit
    */
   public Wind(double speed, int deg) {
     super();

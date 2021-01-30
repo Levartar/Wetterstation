@@ -93,7 +93,7 @@ public class UserIO {
                 if (value >= minOption && value <= maxOption) {
                     return value;
                 } else {
-                    logger.warn("The user has made an invalid entry.");
+                    logger.warn("Selected option: " + value + " is invalid");
                     printOutput.println("Please choose a valid option");
                     scan.reset();
                 }

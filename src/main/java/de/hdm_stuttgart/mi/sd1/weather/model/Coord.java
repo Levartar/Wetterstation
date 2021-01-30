@@ -27,8 +27,8 @@ public class Coord {
 
   /**
    *
-   * @param lon
-   * @param lat
+   * @param lon Längengrad
+   * @param lat Breitengrad
    */
   public Coord(double lat, double lon) {
     super();

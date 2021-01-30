@@ -24,7 +24,7 @@ public class Rain {
 
   /**
    *
-   * @param _3h
+   * @param _3h Letzte drei Stunden
    */
   public Rain(double _3h) {
     super();

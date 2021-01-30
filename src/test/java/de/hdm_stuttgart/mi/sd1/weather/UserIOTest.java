@@ -236,7 +236,7 @@ public class UserIOTest {
     @Test
     public void testChooseCityMultipleOptions() {
         UserIO io = new UserIO();
-        final String expectedOptionOutput = "1 = Hurzuf\n2 = Novinki\n3 = Gorkhā\n" +
+        final String expectedOptionOutput = "1 = Hurzuf, UA\n2 = Novinki, RU\n3 = Gorkhā, NP\n" +
                 "Please choose one option, by typing its number.\n";
 
         City[] cities = new Cities().cities;
@@ -358,7 +358,7 @@ public class UserIOTest {
             io.displayWeather(emptyWeather);
             fail("Die Methode sollte einen Fehler werfen wenn ein leeres Wetter Objekt übergeben wird");
         } catch (Exception e) {
-            assertEquals("Das Weather Objekt enthält keine Daten", e.getMessage());
+            assertEquals("The weather object does not contain any data", e.getMessage());
         }
     }
 

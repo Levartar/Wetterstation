@@ -20,7 +20,7 @@ public class SearcherTest {
         try {
             searcher.searchCity("abcdefg");
         } catch (Exception e) {
-            assertEquals("no Cities containing abcdefg found!", e.getMessage());
+            assertEquals("No cities containing abcdefg found!", e.getMessage());
         }
     }
 
@@ -34,7 +34,7 @@ public class SearcherTest {
         try {
             searcher.searchCity("ABCDEFG");
         } catch (Exception e) {
-            assertEquals("no Cities containing abcdefg found!", e.getMessage());
+            assertEquals("No cities containing ABCDEFG found!", e.getMessage());
         }
     }
 

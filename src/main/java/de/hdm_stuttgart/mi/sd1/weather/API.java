@@ -17,8 +17,8 @@ public class API {
 
     private static final Logger logger = LogManager.getLogger(API.class);
     /**
-     * getCityWeatherdata bekommt ein City Objekt und gibt die Wetterdaten aus der https://openweathermap.org/api zurück
-     * dafür wird erst der Individuelle City Link erstellt, mit dem dann die Individelle Api abfrage gestartet wird.
+     * getCityWeatherdata bekommt ein City Objekt und gibt die Wetterdaten aus der https://openweathermap.org/api zurück.
+     * Dafür wird zuerst der individuelle City Link erstellt, mit dem dann die individuelle Api Abfrage gestartet wird.
      * @param selectedCity ausgewählte Stadt
      * @return Wetter Objekt
      * @throws URISyntaxException wirft Exception wenn URI Fehler
@@ -30,8 +30,8 @@ public class API {
     }
 
     /**
-     * Estellen des Links mit Konstanter Url + Konstanter APPID und variabler id.
-     * @param id bekommt die Individuelle City Id
+     * Estellen des Links mit konstanter Url + konstanter APPID und variabler id.
+     * @param id bekommt die individuelle City Id
      * @return Url String
      */
     public static String createUrl(int id){

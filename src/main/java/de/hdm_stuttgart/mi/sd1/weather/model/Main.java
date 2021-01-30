@@ -48,15 +48,15 @@ public class Main {
 
   /**
    *
-   * @param feelsLike
-   * @param tempMax
-   * @param temp
-   * @param seaLevel
-   * @param humidity
-   * @param pressure
-   * @param tempKf
-   * @param grndLevel
-   * @param tempMin
+   * @param feelsLike Gefühlte Temperatur
+   * @param tempMax Maximaltemperatur
+   * @param temp Minimaltemperatur
+   * @param seaLevel Luftdruck auf Meereshöhe
+   * @param humidity Luftfeuchtigkeit
+   * @param pressure Luftdruck
+   * @param tempKf Interner API Parameter
+   * @param grndLevel Luftdruck auf Bodenhöhe
+   * @param tempMin Minimaltemperatur
    */
   public Main(double temp, double feelsLike, double tempMin, double tempMax, int pressure, int seaLevel, int grndLevel, int humidity, int tempKf) {
     super();

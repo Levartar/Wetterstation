@@ -24,7 +24,7 @@ public class Sys {
 
   /**
    *
-   * @param pod
+   * @param pod Tageszeit Tag/ Nacht
    */
   public Sys(String pod) {
     super();

@@ -23,7 +23,7 @@ public class Searcher {
         City[] cities = new Cities().cities;
         City[] foundCities = new City[0];
         int i=0;
-        logger.info("Search city list for hits");
+        logger.info("Search city list for matching results");
         for (City city : cities) {
             if (city.getName().toLowerCase().contains(searchString.toLowerCase())) {
                 foundCities=Arrays.copyOf(foundCities, foundCities.length+1);

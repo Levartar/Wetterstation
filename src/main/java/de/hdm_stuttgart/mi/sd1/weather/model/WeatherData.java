@@ -33,10 +33,10 @@ public class WeatherData {
 
   /**
    *
-   * @param icon
-   * @param description
-   * @param main
-   * @param id
+   * @param icon Wettericon
+   * @param description Wetterbeschreibung
+   * @param main Kenndaten des Wetters
+   * @param id Wetter ID
    */
   public WeatherData(int id, String main, String description, String icon) {
     super();

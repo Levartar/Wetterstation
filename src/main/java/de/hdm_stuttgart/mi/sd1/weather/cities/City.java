@@ -40,10 +40,10 @@ public class City {
   }
 
   /**
-   * @param coord
-   * @param id
-   * @param name
-   * @param country
+   * @param coord Stadtkoordinaten
+   * @param id ID der Stadt
+   * @param name Name der Stadt
+   * @param country Land in dem sich die Stadt befindet.
    */
   public City(int id, String name, String country, Coord coord) {
     super();

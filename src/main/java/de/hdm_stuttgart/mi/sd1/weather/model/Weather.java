@@ -36,11 +36,11 @@ public class Weather {
 
     /**
      *
-     * @param city
-     * @param cnt
-     * @param cod
-     * @param message
-     * @param list
+     * @param city Stadt
+     * @param cnt Anzahl der Wetterdaten
+     * @param cod Interner API Parameter
+     * @param message Interner API Parameter
+     * @param list Liste der Wetterdaten der unterschiedlichen Zeitpunkte
      */
     public Weather(String cod, int message, int cnt, List[] list, City city) {
         super();

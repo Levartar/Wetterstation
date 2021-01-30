@@ -13,15 +13,9 @@ import java.util.Scanner;
  */
 public class Forecast {
 
-  /**
-   * <p>Entry starting the application.</p>
-   *
-   * @param args Yet unused.
-   */
-
   private static final Logger logger = LogManager.getLogger(Forecast.class);
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
 
     final UserIO io = new UserIO();
 
@@ -38,7 +32,7 @@ public class Forecast {
       final String searchString = io.readQueryString();
       logger.info("Search for city: " +searchString);
       final City[]  matchingCities = searcher.searchCity(searchString);
-      logger.info("Selection of a hit with the city list.");
+      logger.info("Selection of a city from the provided city list.");
       final City selectedCity = io.chooseCity(matchingCities);
       logger.info("Request of the weather data of the selected city ");
       final Weather  weather = api.getCityWeatherdata(selectedCity);

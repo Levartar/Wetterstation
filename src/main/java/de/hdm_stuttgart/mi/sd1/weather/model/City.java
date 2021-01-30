@@ -44,13 +44,13 @@ public class City {
 
   /**
    *
-   * @param country
-   * @param coord
-   * @param sunrise
-   * @param timezone
-   * @param sunset
-   * @param name
-   * @param id
+   * @param country Land
+   * @param coord Koordinaten
+   * @param sunrise Sonnenaufgang
+   * @param timezone Zeitzone
+   * @param sunset Sonnenuntergang
+   * @param name Stadtname
+   * @param id Stadt ID
    */
   public City(int id, String name, Coord coord, String country, int timezone, int sunrise, int sunset) {
     super();

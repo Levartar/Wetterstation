@@ -54,17 +54,17 @@ public class List {
 
   /**
    *
-   * @param dt
-   * @param weather
-   * @param main
-   * @param clouds
-   * @param wind
-   * @param visibility
-   * @param pop
-   * @param rain
-   * @param snow
-   * @param sys
-   * @param dtTxt
+   * @param dt Zeitpunkt der Vorhersage
+   * @param weather Wetter
+   * @param main Kennwerte des Wetters
+   * @param clouds Bewölkung
+   * @param wind Winddaten
+   * @param visibility Durchschnittliche Sichtweite
+   * @param pop Niederschlagswarscheinlichkeit
+   * @param rain Regendaten
+   * @param snow Schneedaten
+   * @param sys API Parameter
+   * @param dtTxt Zeitpunkt der Vorhersage als Text
    */
   public List(int dt, Main main, java.util.List<WeatherData> weather, Clouds clouds, Wind wind, int visibility, double pop, Rain rain, Snow snow, Sys sys, String dtTxt) {
     super();

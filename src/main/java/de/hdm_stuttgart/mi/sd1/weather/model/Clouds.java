@@ -24,7 +24,7 @@ public class Clouds {
 
   /**
    *
-   * @param all
+   * @param all Alle Wolkenparameter
    */
   public Clouds(int all) {
     super();
