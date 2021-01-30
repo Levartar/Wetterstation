@@ -14,9 +14,9 @@ public class Searcher {
      * searchCity vergleicht alle city namen aus der cities.list.json mit dem eingegebenen String.
      * Enthält der city Name den String wird das City Objekt in ein neues City Array foundCities geschrieben.
      * Die Länge des foundCities Array wird mit jeder weiteren gefundenen Stadt um 1 erweitert
-     * @param searchString
-     * @return
-     * @throws Exception
+     * @param searchString Enthält die eingegebene Zeichenkette des Benutzers nach der gesucht wird.
+     * @return Zurückgegeben wird ein Array aus Stadtobjekten die in der Städteliste gefunden wurden.
+     * @throws Exception Keine Städte in der Liste enthalten die eingegebene Zeichenkette.
      */
     public static City[] searchCity(String searchString) throws Exception {
 
